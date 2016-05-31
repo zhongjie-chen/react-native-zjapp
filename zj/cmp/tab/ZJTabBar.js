@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     top: 10000
   }
 });
+
 ZJTabBar.childContextTypes = {
   getBarRef: React.PropTypes.func,
   color: React.PropTypes.string

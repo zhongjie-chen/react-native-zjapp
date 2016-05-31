@@ -51,7 +51,8 @@ class ZJBar extends Component {
 
   static defaultProps = {
     barHeight: 58,
-    icons: [1, 2, 3, 4, 5],
+    icons: [require('./img/ic_bottomtabbar_feed.png'), require('./img/ic_bottomtabbar_discover.png'), require('./img/ic_bottomtabbar_notification.png'),
+    require('./img/ic_bottomtabbar_message.png'), require('./img/ic_bottomtabbar_more.png')],
   };
 
   constructor(props, context) {
@@ -96,7 +97,7 @@ class ZJBar extends Component {
           this.props.icons.map((c, i)=>{
             return(
               <TouchableOpacity style={styles.item} key={i} onPress={()=>this.onItemClick(i)}>
-                <Image style={{backgroundColor: this.state.index == i ? 'blue':undefined}} source={require('./img/ic_write_setting.png')}></Image>
+                <Image style={{tintColor: this.state.index == i ? '#4848FF':'#C5C5C5', height: 32, width: 32}} source={c}></Image>
               </TouchableOpacity>
             )
           })
