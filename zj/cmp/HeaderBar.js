@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   box: {
-    backgroundColor: '#A3A3FE',
+    backgroundColor: '#A3A3FE7F',
     height: 48,
     alignItems: 'center',
     flexDirection: 'row'
