@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 
 import ZJTabBar from './cmp/tab/ZJTabBar';
+import HeaderBar from './cmp/HeaderBar';
+
 
 class App extends Component {
 
@@ -28,9 +30,9 @@ class App extends Component {
     return(
       <View style={styles.container}>
         <ZJTabBar>
-          <Text style={[styles.show,{backgroundColor: 'green', flex: 1,}]}>
-          123333
-          </Text>
+          <View style={[styles.show,{backgroundColor: 'green', flex: 1,}]}>
+            <HeaderBar></HeaderBar>
+          </View>
           <Text style={{backgroundColor: 'green', flex: 1, }}>
             22222222
           </Text>

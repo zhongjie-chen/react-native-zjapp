@@ -66,21 +66,21 @@ class ZJBar extends Component {
   }
 
   show(enable=false, duration=1000) {
-   const toValue = enable ? 0 : -58;
-   Animated.timing(this.value, {
-     duration: duration,
-     toValue
-   }).start();
-   this.setState({
+    const toValue = enable ? 0 : -58;
+    Animated.timing(this.value, {
+      duration: duration,
+      toValue
+    }).start();
+     this.setState({
      isShow: !this.state.isShow
-   })
+    })
   }
 
   setBarHeight(value) {
-   //const { size } = this.props;
-   const size = 0;
-   const actualValue = this._sizeLimit.process(value) - size;
-   this.value.setValue(actualValue);
+    //const { size } = this.props;
+    const size = 0;
+    const actualValue = this._sizeLimit.process(value) - size;
+    this.value.setValue(actualValue);
   }
 
   onItemClick(i){
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     flexDirection: 'row',
-    backgroundColor: '#9c9c9c',
+    backgroundColor: '#cdcdcd',
     width: width,
 
   },
