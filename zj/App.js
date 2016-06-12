@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 
 import ZJTabBar from './cmp/tab/ZJTabBar';
-import HeaderBar from './cmp/HeaderBar';
-
+import FirstPage from './cmp/FirstPage';
 
 class App extends Component {
 
@@ -30,8 +29,8 @@ class App extends Component {
     return(
       <View style={styles.container}>
         <ZJTabBar>
-          <View style={[styles.show,{backgroundColor: 'green', flex: 1,}]}>
-            <HeaderBar></HeaderBar>
+          <View style={{flex: 1,}}>
+            <FirstPage></FirstPage>
           </View>
           <Text style={{backgroundColor: 'green', flex: 1, }}>
             22222222
@@ -79,8 +78,8 @@ class MyLongScrollView extends Component {
       }
     } = e;
 
-    const { getBarRef } = this.context;
-    getBarRef(y);
+    const { setBar } = this.context;
+    setBar(y);
     // console.log(this.props.zj);
     // this.props.zj.setBarHeight(y);
   }
@@ -98,7 +97,7 @@ class MyLongScrollView extends Component {
   }
 }
 MyLongScrollView.contextTypes = {
-  getBarRef: React.PropTypes.func,
+  setBar: React.PropTypes.func,
   color: React.PropTypes.string
 };
 

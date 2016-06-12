@@ -28,7 +28,7 @@ class ZJTabBar extends Component {
 
   getChildContext() {
     return {
-      getBarRef: this.setBarHeight.bind(this),
+      setBar: this.setBarHeight.bind(this),
       color: "purple"
     };
   }
@@ -60,7 +60,7 @@ class ZJTabBar extends Component {
             )
           })
         }
-        <ZJBar ref='ZJBar' onItemChanged={(i)=>this.onItemChanged(i)}></ZJBar>
+        <ZJBar ref="ZJBar" onItemChanged={(i)=>this.onItemChanged(i)}></ZJBar>
       </View>
     );
   }
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 });
 
 ZJTabBar.childContextTypes = {
-  getBarRef: React.PropTypes.func,
+  setBar: React.PropTypes.func,
   color: React.PropTypes.string
 };
 export{ ZJTabBar as default };
