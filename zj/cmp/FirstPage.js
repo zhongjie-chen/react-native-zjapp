@@ -25,7 +25,7 @@ class FirstPage extends Component {
       rowHasChanged: (row1, row2) => row1 !== row2,
       sectionHeaderHasChanged: (row1, row2) => row1 !== row2,
     });
-    this.value = new Animated.Value(50);
+    //this.value = new Animated.Value(50);
   }
 
   componentWillMount(){
@@ -44,9 +44,9 @@ class FirstPage extends Component {
 
     return(
       <View style={{flex: 1,}}>
-        <Animated.View style={{top: this.value, flex: 1}} >
+        <Animated.View style={{top: 0, flex: 1}} >
           <ListView
-            style={{flex: 1}}
+            style={{flex: 1, paddingTop: 40}}
             dataSource={this.dataSource.cloneWithRowsAndSections(myData)}
             renderRow={this._renderRow.bind(this)}
             renderSectionHeader={this._renderSectionHeader.bind(this)}
@@ -60,6 +60,7 @@ class FirstPage extends Component {
                 <RefreshControl
                   refreshing={this.state.isRefreshing}
                   //onRefresh={this._onRefresh.bind(this)}
+                  style={{top: 200}}
                   colors={['#ff0000', '#00ff00', '#0000ff','#3ad564']}
                   progressBackgroundColor="#ffffff"/>}
           />
@@ -97,20 +98,20 @@ class FirstPage extends Component {
     this.refs['headerBar'].setBarHeight(dy);
     setBar(dy);
 
-    let ky = 0;
-    if(y < 0){
-      ky = 0 ;
-    } else if(y > 50) {
-      ky = 50;
-    }  else {
-      ky = y;
-    }
+    // let ky = 0;
+    // if(y < 0){
+    //   ky = 0 ;
+    // } else if(y >= 50) {
+    //   ky = 50;
+    // }  else {
+    //   ky = y;
+    // }
     // TODO this.value判断
-    if(this.value == 0){
-      this.value.setValue(50-ky)
-    } else {
-      this.value.setValue(50-ky+dy)
-    }
+    // if(ky == 50){
+    //   this.value.setValue(50-ky)
+    // } else {
+    //   this.value.setValue(50-ky+dy)
+    // }
 
 
   }
