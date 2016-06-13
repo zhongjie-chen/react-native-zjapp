@@ -44,27 +44,24 @@ class FirstPage extends Component {
 
     return(
       <View style={{flex: 1,}}>
-        <Animated.View style={{top: 0, flex: 1}} >
-          <ListView
-            style={{flex: 1, paddingTop: 40}}
-            dataSource={this.dataSource.cloneWithRowsAndSections(myData)}
-            renderRow={this._renderRow.bind(this)}
-            renderSectionHeader={this._renderSectionHeader.bind(this)}
-            renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
-            pageSize={myData.length}
-            initialListSize={10}
-            renderHeader={()=><View style={{height: 60}}></View>}
-            onScroll={this.onScroll.bind(this)}
-            onContentSizeChange={()=>console.log('contentHeight')}
-            refreshControl={
-                <RefreshControl
-                  refreshing={this.state.isRefreshing}
-                  //onRefresh={this._onRefresh.bind(this)}
-                  style={{top: 200}}
-                  colors={['#ff0000', '#00ff00', '#0000ff','#3ad564']}
-                  progressBackgroundColor="#ffffff"/>}
-          />
-        </Animated.View>
+        <ListView
+          dataSource={this.dataSource.cloneWithRowsAndSections(myData)}
+          renderRow={this._renderRow.bind(this)}
+          renderSectionHeader={this._renderSectionHeader.bind(this)}
+          renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
+          pageSize={myData.length}
+          initialListSize={10}
+          renderHeader={()=><View style={{height: 60}}></View>}
+          onScroll={this.onScroll.bind(this)}
+          contentContainerStyle={{paddingTop: 50}}
+          refreshControl={
+              <RefreshControl
+                refreshing={this.state.isRefreshing}
+                //onRefresh={this._onRefresh.bind(this)}
+                progressViewOffset ={50}
+                colors={['#ff0000', '#00ff00', '#0000ff','#3ad564']}
+                progressBackgroundColor="#ffffff"/>}
+        />
         <HeaderBar ref="headerBar"></HeaderBar>
       </View>
     );

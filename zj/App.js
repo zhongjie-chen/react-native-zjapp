@@ -5,6 +5,7 @@ import {
   Dimensions,
   TextInput,
   ScrollView,
+  RefreshControl,
   View
 } from 'react-native';
 
@@ -90,6 +91,14 @@ class MyLongScrollView extends Component {
         onScroll={this.onScroll.bind(this)}
         scrollEventThrottle={16}
         style={{ flex: 1}}
+        contentContainerStyle={{paddingTop: 50}}
+        refreshControl={
+            <RefreshControl
+              refreshing={false}
+              //onRefresh={this._onRefresh.bind(this)}
+              //progressViewOffset ={50}
+              colors={['#ff0000', '#00ff00', '#0000ff','#3ad564']}
+              progressBackgroundColor="#ffffff"/>}
         contentContainerStyle={{ alignItems: 'center' }}>
         {this.generateContents()}
       </ScrollView>
