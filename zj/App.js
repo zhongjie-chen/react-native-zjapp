@@ -11,6 +11,7 @@ import {
 
 import ZJTabBar from './cmp/tab/ZJTabBar';
 import FirstPage from './cmp/FirstPage';
+import ContactsPage from './cmp/ContactsPage';
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
 
   constructor(props, context) {
     super(props, context);
+
   }
 
   render() {
@@ -33,9 +35,9 @@ class App extends Component {
           <View style={{flex: 1,}}>
             <FirstPage></FirstPage>
           </View>
-          <Text style={{backgroundColor: 'green', flex: 1, }}>
-            22222222
-          </Text>
+          <View style={{flex: 1,}}>
+            <ContactsPage></ContactsPage>
+          </View>
           <View style={{backgroundColor: 'green', flex: 1}}>
             <TextInput style={{height: 40, borderColor: 'gray'}}></TextInput>
           </View>

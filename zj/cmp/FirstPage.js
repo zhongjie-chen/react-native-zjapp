@@ -28,12 +28,24 @@ class FirstPage extends Component {
     //this.value = new Animated.Value(50);
   }
 
+  async getData(url){
+    console.log(`begin  ${url}`);
+    let response = await fetch(url);
+    console.log(`end  ${url}`);
+    let responseData = await response.json();
+    return responseData;
+  }
+
   componentWillMount(){
-    fetch(URL).then(response => response.json())
-      .then(responseData  => {this.setState({data: responseData.subjects , isRefreshing: false})})
-      .catch((error) => {
-			 		console.log(error);
-			}).done();
+    // fetch(URL).then(response => response.json())
+    //   .then(responseData  => {this.setState({data: responseData.subjects , isRefreshing: false})})
+    //   .catch((error) => {
+		// 	 		console.log(error);
+		// 	}).done();
+		this.getData(URL).then(responseData => {this.setState({data: responseData.subjects, isRefreshing: false})})
+    .catch((error) => {
+			 	console.log(error);
+		})
   }
 
   render() {
