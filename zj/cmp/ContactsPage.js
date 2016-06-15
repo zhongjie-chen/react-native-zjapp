@@ -22,17 +22,26 @@ class ContactsPage extends Component {
   render() {
     return(
       <ScrollView>
-        <TouchableOpacity style={{alignItems: 'center', }} onPress={()=>this._onPress()}>
-          <View style={{borderWidth: StyleSheet.hairlineWidth, borderColor:'#c9c9c9'}}>
-            <Text >得到通讯录列表</Text>
+        <TouchableOpacity style={{alignItems: 'center', }} onPress={()=>this._onPress(true)}>
+          <View style={{borderWidth: StyleSheet.hairlineWidth, borderColor: '#c9c9c9', borderRadius: 4, padding: 10, backgroundColor: 'blue', marginTop: 4}}>
+            <Text style={{color: 'white'}}>得到通讯录</Text>
           </View>
-
+        </TouchableOpacity>
+        <TouchableOpacity style={{alignItems: 'center', marginBottom: 10 }} onPress={()=>this._onPress(false)}>
+          <View style={{borderWidth: StyleSheet.hairlineWidth, borderColor: '#c9c9c9', borderRadius: 4, padding: 10, backgroundColor: 'red'}}>
+            <Text style={{color: 'white'}}>清楚通讯录</Text>
+          </View>
         </TouchableOpacity>
         {
           this.state.contacts.map((c, i)=>{
+            let middleName = "";
+            let phone = "";
+            c.middleName && ( middleName = c.middleName );
+            c.phoneNumbers[0] && (phone = c.phoneNumbers[0].number);
             return(
-              <View key={i}>
-                <Text>{c.familyName}</Text>
+              <View style={{height: 100, borderBottomWidth: StyleSheet.hairlineWidth, borderColor: '#c9c9c9', justifyContent: 'center'}} key={i}>
+                <Text style={{margin: 10, color: 'black', fontSize: 20}}>{c.familyName+ c.givenName+ middleName}</Text>
+                <Text style={{margin: 10}}>{phone}</Text>
               </View>
             )
           })
@@ -41,15 +50,19 @@ class ContactsPage extends Component {
     );
   }
 
-  _onPress(){
-    Contacts.getAll((err, contacts) => {
-      if(err && err.type === 'permissionDenied'){
-        console.log(err);
-      } else {
-        console.log(contacts)
-        this.setState({contacts: contacts})
-      }
-    })
+  _onPress(isShow){
+    if(isShow){
+      Contacts.getAll((err, contacts) => {
+        if(err && err.type === 'permissionDenied'){
+          console.log(err);
+        } else {
+          console.log(contacts)
+          this.setState({contacts: contacts})
+        }
+      })
+    } else {
+      this.setState({contacts: []})
+    }
   }
 
 }
