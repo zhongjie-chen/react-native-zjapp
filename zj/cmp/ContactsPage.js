@@ -5,6 +5,7 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
+  Alert,
   View
 } from 'react-native';
 
@@ -34,13 +35,14 @@ class ContactsPage extends Component {
         </TouchableOpacity>
         {
           this.state.contacts.map((c, i)=>{
-            let middleName = "";
-            let phone = "";
+            let [middleName, familyName, givenName, phone] = ["", "", "", ""];
             c.middleName && ( middleName = c.middleName );
+            c.familyName && ( familyName = c.familyName );
+            c.givenName && ( givenName = c.givenName );
             c.phoneNumbers[0] && (phone = c.phoneNumbers[0].number);
             return(
               <View style={{height: 100, borderBottomWidth: StyleSheet.hairlineWidth, borderColor: '#c9c9c9', justifyContent: 'center'}} key={i}>
-                <Text style={{margin: 10, color: 'black', fontSize: 20}}>{c.familyName+ c.givenName+ middleName}</Text>
+                <Text style={{margin: 10, color: 'black', fontSize: 20}}>{familyName+ givenName+ middleName}</Text>
                 <Text style={{margin: 10}}>{phone}</Text>
               </View>
             )
@@ -58,6 +60,7 @@ class ContactsPage extends Component {
         } else {
           console.log(contacts)
           this.setState({contacts: contacts})
+          Alert.alert('tip', '获取设备通讯录数据成功！')
         }
       })
     } else {
