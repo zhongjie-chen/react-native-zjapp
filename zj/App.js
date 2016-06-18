@@ -12,6 +12,8 @@ import {
 import ZJTabBar from './cmp/tab/ZJTabBar';
 import FirstPage from './cmp/FirstPage';
 import ContactsPage from './cmp/ContactsPage';
+import ZJPhotoPage from './cmp/ZJPhotoPage';
+import ZJMyPhotoSelectPage from './cmp/ZJMyPhotoSelectPage';
 
 class App extends Component {
 
@@ -38,12 +40,12 @@ class App extends Component {
           <View style={{flex: 1,}}>
             <ContactsPage></ContactsPage>
           </View>
-          <View style={{backgroundColor: 'green', flex: 1}}>
-            <TextInput style={{height: 40, borderColor: 'gray'}}></TextInput>
+          <View style={{flex: 1}}>
+            <ZJPhotoPage></ZJPhotoPage>
           </View>
 
           <View style={{flex:1}}>
-            <MyLongScrollView ></MyLongScrollView>
+            <ZJMyPhotoSelectPage></ZJMyPhotoSelectPage>
           </View>
 
           <Text style={{backgroundColor: 'green', flex: 1}}>

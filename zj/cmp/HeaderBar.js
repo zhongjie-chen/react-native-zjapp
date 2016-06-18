@@ -47,7 +47,7 @@ class HeaderBar extends Component {
     this.state = {
       isShow: true
     };
-    this.value = new Animated.Value(-58);
+    this.value = new Animated.Value(0);
     this._sizeLimit = sizeLimit(-58, 0);
   }
 

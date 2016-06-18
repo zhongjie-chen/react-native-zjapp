@@ -8,6 +8,8 @@
   "dependencies": {
     "react": "^15.0.2",
     "react-native": "^0.26.2",
-    "react-native-contacts": "^0.2.6"
+    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
+    "react-native-contacts": "^0.2.6",
+    "react-native-image-picker": "^0.19.4"
   }
 }

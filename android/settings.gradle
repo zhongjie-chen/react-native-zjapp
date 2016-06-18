@@ -4,3 +4,6 @@ include ':app'
 
 include ':react-native-contacts'
 project(':react-native-contacts').projectDir = new File(settingsDir, '../node_modules/react-native-contacts/android')
+
+include ':react-native-image-picker'
+project(':react-native-image-picker').projectDir = new File(settingsDir, '../node_modules/react-native-image-picker/android')
