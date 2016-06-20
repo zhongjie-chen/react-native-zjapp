@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  Dimensions,
   CameraRoll,
+  Platform,
   Image,
+  Dimensions,
   View
 } from 'react-native';
 
@@ -13,30 +14,42 @@ class ZJMyPhotoSelectPage extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
+      assets: ([]: Array<Image>),
+      groupTypes: this.props.groupTypes,
+      lastCursor: (null : ?string),
+      assetType: this.props.assetType,
+      noMore: false,
+      loadingMore: false,
       image: null
     }
-    CameraRoll.getPhotos({first: 1,}, function(obj){
-      console.log(obj);
-      this.setState({uri: obj.edges[0].node.image});
-    }, function(obj){
-      console.log(obj);
-    });
+    this._fetch();
+  }
+
+  _fetch() {
+    var fetchParams: Object = {
+      first: this.props.batchSize,
+      groupTypes: this.props.groupTypes,
+      assetType: this.props.assetType,
+    };
+    if (Platform.OS === 'android') {
+      // not supported in android
+      delete fetchParams.groupTypes;
+    }
+    if (this.state.lastCursor) {
+      fetchParams.after = this.state.lastCursor;
+    }
+    fetchParams.first = 2;
+    CameraRoll.getPhotos(fetchParams)
+      .then((data) => {console.log(data);this.setState({image: data})}, (e) => logError(e));
   }
 
   render() {
-    if(this.state.image){
       return(
         <View>
-          <Image style={{height:200, width:200}} source={this.state.image}></Image>
+          <Image source={{height:300,uri:"content://media/external/images/media/36044",width:200}}></Image>
         </View>
       );
-    } else {
-      return(
-        <View>
-          <Image source={{uri: 'content://media/external/images/media/36044.png'}}></Image>
-        </View>
-      );
-    }
+
 
   }
 }
