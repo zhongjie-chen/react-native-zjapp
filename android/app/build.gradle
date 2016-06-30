@@ -133,6 +133,7 @@ dependencies {
     compile "com.facebook.react:react-native:+"  // From node_modules
     compile project(':react-native-contacts')
     compile project(':react-native-image-picker')
+    compile project(':RNMaterialKit')
 }
 
 // Run this once to be able to run the application with BUCK

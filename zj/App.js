@@ -14,6 +14,7 @@ import FirstPage from './cmp/FirstPage';
 import ContactsPage from './cmp/ContactsPage';
 import ZJPhotoPage from './cmp/ZJPhotoPage';
 import ZJMyPhotoSelectPage from './cmp/ZJMyPhotoSelectPage';
+import MKPage from './cmp/MKPage';
 
 class App extends Component {
 
@@ -48,9 +49,7 @@ class App extends Component {
             <ZJMyPhotoSelectPage></ZJMyPhotoSelectPage>
           </View>
 
-          <Text style={{backgroundColor: 'green', flex: 1}}>
-            55555555
-          </Text>
+          <MKPage></MKPage>
         </ZJTabBar>
       </View>
     );

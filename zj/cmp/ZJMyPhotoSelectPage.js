@@ -6,8 +6,14 @@ import {
   Platform,
   Image,
   Dimensions,
+  ScrollView,
   View
 } from 'react-native';
+
+import {
+  MKButton,
+  MKColor,
+} from 'react-native-material-kit';
 
 class ZJMyPhotoSelectPage extends Component {
 
@@ -20,9 +26,9 @@ class ZJMyPhotoSelectPage extends Component {
       assetType: this.props.assetType,
       noMore: false,
       loadingMore: false,
-      image: null
+      images: []
     }
-    this._fetch();
+
   }
 
   _fetch() {
@@ -38,20 +44,54 @@ class ZJMyPhotoSelectPage extends Component {
     if (this.state.lastCursor) {
       fetchParams.after = this.state.lastCursor;
     }
-    fetchParams.first = 2;
+    fetchParams.first = 300;
+    //fetchParams.groupName = "pics";
     CameraRoll.getPhotos(fetchParams)
-      .then((data) => {console.log(data);this.setState({image: data})}, (e) => logError(e));
+      .then((data) => {console.log(data);this.setState({images: data.edges})}, (e) => logError(e));
   }
 
   render() {
       return(
-        <View>
-          <Image source={{height:300,uri:"content://media/external/images/media/36044",width:200}}></Image>
-        </View>
+        <ScrollView>
+          <View>
+            <MKButton
+              backgroundColor={MKColor.Teal}
+              shadowRadius={2}
+              shadowOffset={{width:0, height:2}}
+              shadowOpacity={.7}
+              shadowColor="black"
+              onPress={() => {
+                console.log('hi, raised button!');
+                this._fetch();
+              }}
+              >
+                <Text pointerEvents="none"
+                      style={{height: 80, color: 'white', fontWeight: 'bold', textAlign: 'center', textAlignVertical: 'center'}}>
+                  IMAGE
+                </Text>
+            </MKButton>
+
+            <Image source={{uri:"content://media/external/images/media/45715"}} style={{height: 100, width: 100}}></Image>
+            {
+                this.getImageView()
+            }
+
+          </View>
+        </ScrollView>
       );
-
-
   }
+
+  getImageView(){
+    return(
+      this.state.images.map((c,i)=>{
+        console.log(c);
+        return(
+          <Image source={c.node.image} style={{height: 100, width: 100}}></Image>
+        )
+      })
+    )
+  }
+
 }
 
 const { height, width } = Dimensions.get('window');
