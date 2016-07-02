@@ -142,7 +142,6 @@ var CameraRollView = React.createClass({
       assetType: this.props.assetType,
     };
     if (Platform.OS === 'android') {
-      // not supported in android
       delete fetchParams.groupTypes;
     }
     if (this.state.lastCursor) {
