@@ -15,7 +15,7 @@
 
 6 这仅仅是练习项目，有问题欢迎`issues`
 
-*开源项目:* [Rank Linking](https://github.com/zhongjie-chen/rn_rank)
+*另一个开源项目:* [Rank Linking](https://github.com/zhongjie-chen/rn_rank)
 
 ## Screenshot Android
 <img src="https://github.com/zhongjie-chen/react-native-zjapp/blob/master/screenshot/111.gif?raw=true" width = "260" align=center />
