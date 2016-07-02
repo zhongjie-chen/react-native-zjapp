@@ -1,7 +1,21 @@
-# react-native-zjapp
-类`知乎`客户端的一个RN的练习项目，包含了许多功能点以及第三方库的使用。
+# zjapp
+这一个RN的练习项目，包含了许多功能点以及第三方库的使用。
 
-*其他开源项目:* [Linking](https://github.com/zhongjie-chen/rn_rank)
+## 功能
+
+1 自定义封装了类知乎客户端的tabbar，并且伴随滚动逐渐隐藏和显示头部底部功能。
+
+2 实现本地通讯录的交互（用的是`ScrollView`数据多可能会卡顿）
+
+3 拍摄或者选择图片剪切头像（`react-native-image-picker` 有些bug）
+
+4 获取本地图片 实现自定义相册功能（全部获取所有图片，对数其进行分类可以实现分类相册功能）
+
+5 MD设计风格的第三方库（`react-native-material-kit`）
+
+6 这仅仅是练习项目，有问题欢迎`issues`
+
+*开源项目:* [Rank Linking](https://github.com/zhongjie-chen/rn_rank)
 
 ## Screenshot Android
 <img src="https://github.com/zhongjie-chen/react-native-zjapp/blob/master/screenshot/111.gif?raw=true" width = "260" align=center />
@@ -21,20 +35,6 @@
     "react-native-material-kit": "^0.3.2"
   }
 ```
-
-## 功能
-
-1 自定义封装了类知乎客户端的tabbar，并且伴随滚动逐渐隐藏和显示头部底部功能。
-
-2 实现本地通讯录的交互（用的是`ScrollView`数据多可能会卡顿）
-
-3 拍摄或者选择图片剪切头像（`react-native-image-picker` 有些bug）
-
-4 获取本地图片 实现自定义相册功能（全部获取所有图片，对数其进行分类可以实现分类相册功能）
-
-5 MD设计风格的第三方库（`react-native-material-kit`）
-
-6 这仅仅是练习项目，有问题欢迎`issues`
 
 ## How To Build And Run
 >* 1.Prepare your environment: Requirements and Android Setup
