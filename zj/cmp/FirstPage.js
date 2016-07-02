@@ -6,6 +6,7 @@ import {
   ListView,
   RefreshControl,
   Animated,
+  Image,
   View
 } from 'react-native';
 
@@ -37,11 +38,6 @@ class FirstPage extends Component {
   }
 
   componentWillMount(){
-    // fetch(URL).then(response => response.json())
-    //   .then(responseData  => {this.setState({data: responseData.subjects , isRefreshing: false})})
-    //   .catch((error) => {
-		// 	 		console.log(error);
-		// 	}).done();
 		this.getData(URL).then(responseData => {this.setState({data: responseData.subjects, isRefreshing: false})})
     .catch((error) => {
 			 	console.log(error);
@@ -69,7 +65,6 @@ class FirstPage extends Component {
           refreshControl={
               <RefreshControl
                 refreshing={this.state.isRefreshing}
-                //onRefresh={this._onRefresh.bind(this)}
                 progressViewOffset ={50}
                 colors={['#ff0000', '#00ff00', '#0000ff','#3ad564']}
                 progressBackgroundColor="#ffffff"/>}
@@ -80,9 +75,11 @@ class FirstPage extends Component {
   }
 
   _renderRow(rowData){
+    console.log(rowData);
     return(
       <View>
-        <Text style={{height: 200}}>{rowData.name}</Text>
+        <Text style={{height: 50}}>{rowData.name}</Text>
+        <Image style={{height: 100, width:80}} source={{uri: rowData.avatars.medium}}></Image>
       </View>
     )
   }
@@ -106,22 +103,6 @@ class FirstPage extends Component {
     const { setBar } = this.context;
     this.refs['headerBar'].setBarHeight(dy);
     setBar(dy);
-
-    // let ky = 0;
-    // if(y < 0){
-    //   ky = 0 ;
-    // } else if(y >= 50) {
-    //   ky = 50;
-    // }  else {
-    //   ky = y;
-    // }
-    // TODO this.value判断
-    // if(ky == 50){
-    //   this.value.setValue(50-ky)
-    // } else {
-    //   this.value.setValue(50-ky+dy)
-    // }
-
 
   }
 

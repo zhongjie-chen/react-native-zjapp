@@ -7,6 +7,8 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  ListView,
+  TouchableHighlight,
   View
 } from 'react-native';
 
@@ -28,7 +30,9 @@ class ZJMyPhotoSelectPage extends Component {
       loadingMore: false,
       images: []
     }
-
+    this.dataSource = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2
+    });
   }
 
   _fetch() {
@@ -44,40 +48,53 @@ class ZJMyPhotoSelectPage extends Component {
     if (this.state.lastCursor) {
       fetchParams.after = this.state.lastCursor;
     }
-    fetchParams.first = 300;
+    fetchParams.first = 500;
     //fetchParams.groupName = "pics";
+    //对edges数组进行分类 可以做到类似选择相册的功能
+    //TODO
     CameraRoll.getPhotos(fetchParams)
       .then((data) => {console.log(data);this.setState({images: data.edges})}, (e) => logError(e));
   }
 
+  _renderRow(rowData, sectionID, rowID, highlightRow){
+    return(
+      <TouchableHighlight underlayColor="rgba(34, 26, 38, 0.1)" onPress={()=>console.log(rowID)}>
+        <View style={{flexDirection:'row',padding:12,borderBottomWidth:StyleSheet.hairlineWidth,borderColor:'#c9c9c9'}}>
+          <Image
+            source={rowData.node.image}
+            style={{height:80,width:120}}
+          />
+        </View>
+      </TouchableHighlight>
+    );
+  }
+
   render() {
       return(
-        <ScrollView>
-          <View>
-            <MKButton
-              backgroundColor={MKColor.Teal}
-              shadowRadius={2}
-              shadowOffset={{width:0, height:2}}
-              shadowOpacity={.7}
-              shadowColor="black"
-              onPress={() => {
-                console.log('hi, raised button!');
-                this._fetch();
-              }}
-              >
-                <Text pointerEvents="none"
-                      style={{height: 80, color: 'white', fontWeight: 'bold', textAlign: 'center', textAlignVertical: 'center'}}>
-                  IMAGE
-                </Text>
-            </MKButton>
-
-            <Image source={{uri:"content://media/external/images/media/45715"}} style={{height: 100, width: 100}}></Image>
-            {
-                this.getImageView()
-            }
-
-          </View>
-        </ScrollView>
+        <View style={styles.container}>
+          <MKButton
+            backgroundColor={MKColor.Teal}
+            shadowRadius={2}
+            shadowOffset={{width:0, height:2}}
+            shadowOpacity={.7}
+            shadowColor="black"
+            onPress={() => {
+              console.log('hi, raised button!');
+              this._fetch();
+            }}
+            >
+            <Text pointerEvents="none"
+                  style={{height: 80, color: 'white', fontWeight: 'bold', textAlign: 'center', textAlignVertical: 'center'}}>
+              IMAGE
+            </Text>
+          </MKButton>
+          <ListView
+            style={styles.container}
+            contentContainerStyle={styles.list}
+            dataSource={this.dataSource.cloneWithRows(this.state.images)}
+            renderRow={this._renderRow.bind(this)}
+          />
+        </View>
       );
   }
 
@@ -103,6 +120,12 @@ const styles = StyleSheet.create({
   item: {
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  list: {
+    marginTop:5,
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
 });
 
