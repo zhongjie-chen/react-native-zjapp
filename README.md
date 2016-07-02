@@ -24,6 +24,9 @@
 <img src="https://github.com/zhongjie-chen/react-native-zjapp/blob/master/screenshot/4444.jpg?raw=true" width = "260" align=center />
 <img src="https://github.com/zhongjie-chen/react-native-zjapp/blob/master/screenshot/555.png?raw=true" width = "260" align=center />
 
+## APK 下载
+*APK 下载:* [linking](https://github.com/zhongjie-chen/react-native-zjapp/tree/master/apk)
+
 ## Dependency
 ```
 "dependencies": {
