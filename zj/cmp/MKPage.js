@@ -1,153 +1,49 @@
-import React, { Component } from 'react';
+/**
+ * Created by ywu on 15/7/16.
+ */
+
+import React from 'react';
+const appStyles = require('./styles');
+
 import {
   StyleSheet,
   Text,
-  Dimensions,
-  View
+  View,
+  ScrollView,
+  PixelRatio,
 } from 'react-native';
 
 import {
   MKTextField,
   MKColor,
   mdl,
-  MKButton,
-  MKSpinner,
-  MKSlider,
-  getTheme,
-  MKIconToggle,
-  MKSwitch,
-  MKCheckbox,
-  MKRadioButton,
 } from 'react-native-material-kit';
 
-
-class MKPage extends Component {
-
-  constructor(props, context) {
-    super(props, context);
-    this.radioGroup = new MKRadioButton.Group();
-    this.state = {
-      rb: true,
-    }
-  }
-
-  render() {
-    return(
-      <View style={styles.container}>
-        <MKTextField
-          tintColor={MKColor.Lime}
-          textInputStyle={{color: MKColor.Orange}}
-          placeholder="text..."
-          style={styles.textfield}
-          />
-        <TextfieldWithFloatingLabel ref="defaultInput"/>
-        <View style={{margin: 10}}>
-          <MKButton
-            backgroundColor={MKColor.Orange}
-            shadowRadius={2}
-            shadowOffset={{width:0, height:2}}
-            shadowOpacity={.7}
-            shadowColor="black"
-            onPress={() => {
-              console.log('hi, raised button!');
-            }}
-            >
-            <Text pointerEvents="none"
-                  style={{color: 'white', fontWeight: 'bold', height: 80,}}>
-              RAISED BUTTON
-            </Text>
-          </MKButton>
-          <ColoredRaisedButton></ColoredRaisedButton>
-        </View>
-        <mdl.Progress
-          style={styles.progress}
-          progress={0.2}
-        />
-        <View style={{flexDirection: 'row'}}>
-          <mdl.Spinner style={{height:50, width: 50}}/>
-          <SingleColorSpinner></SingleColorSpinner>
-        </View>
-        <MKSlider
-          ref="sliderWithValue"
-          min={10}
-          max={100}
-          value={25}
-        />
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <MKIconToggle
-            checked={true}
-            onCheckedChange={this._onIconChecked}
-            onPress={this._onIconClicked}
-          >
-            <Text
-              pointerEvents="none"
-              style={styles.toggleTextOff}>Off</Text>
-            <Text state_checked={true}
-                  pointerEvents="none"
-                  style={[styles.toggleText, styles.toggleTextOn]}>On</Text>
-          </MKIconToggle>
-          <MKSwitch style={styles.appleSwitch}
-              trackSize={30}
-              trackLength={52}
-              onColor="rgba(255,152,0,.3)"
-              thumbOnColor={MKColor.Orange}
-              rippleColor="rgba(255,152,0,.2)"
-              onPress={() => console.log('orange switch pressed')}
-              onCheckedChange={(e) => console.log('orange switch checked', e)}
-              />
-          <MKCheckbox
-            checked={true}
-          />
-          <MKRadioButton
-            checked={this.state.rb}
-            group={this.radioGroup}
-          />
-          <MKRadioButton
-            checked={!this.state.rb}
-            group={this.radioGroup}
-          />
-        </View>
-  
-      </View>
-    );
-  }
-}
-
-const { height, width } = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  container: {
+const styles = Object.assign({}, appStyles, StyleSheet.create({
+  col: {
     flex: 1,
+    flexDirection: 'column',
+    // alignItems: 'center', // this will prevent TFs from stretching horizontal
+    marginLeft: 7, marginRight: 7,
+    // backgroundColor: MKColor.Lime,
   },
-  item: {
-    justifyContent: 'center',
-    alignItems: 'center'
+  textfield: {
+    height: 28,  // have to do it on iOS
+    marginTop: 32,
   },
   textfieldWithFloatingLabel: {
     height: 48,  // have to do it on iOS
     marginTop: 10,
   },
-  toggleText: {
-   fontSize: 16,
-   fontStyle: 'italic',
-   fontWeight: 'bold',
-   color: '#616161',
- },
- toggleOnText: {
-   color: getTheme().primaryColor,
- },
- switch: {
-   marginTop: 2,
-   // marginBottom: 5,
- },
- appleSwitch: {
-   marginTop: 7,
-   marginBottom: 7,
- },
-});
+}));
+
+const Textfield = MKTextField.textfield()
+  .withPlaceholder('Text...')
+  .withStyle(styles.textfield)
+  .build();
 
 const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
-  .withPlaceholder('Number...')
+  .withPlaceholder('手机号...')
   .withStyle(styles.textfieldWithFloatingLabel)
   .withFloatingLabelFont({
     fontSize: 18,
@@ -155,12 +51,82 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
     fontWeight: '200',
   })
   .withKeyboardType('numeric')
-.build();
-const ColoredRaisedButton = MKButton.accentColoredFab()
-  .withText('+')
-  .withOnPress(() => {
-    console.log("Hi, it's a colored button!");
-  }).build();
-const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build();
-export{ MKPage as default };
+
+const ColoredTextfield = mdl.Textfield.textfield()
+  .withPlaceholder('Text...')
+  .withStyle(styles.textfield)
+  .withTintColor(MKColor.Lime)
+  .withTextInputStyle({color: MKColor.Orange})
+  .build();
+
+const PasswordInput = mdl.Textfield.textfieldWithFloatingLabel()
+  .withPassword(true)
+  .withPlaceholder('Password')
+  .withDefaultValue('!123')
+  .withHighlightColor(MKColor.Lime)
+  .withStyle(styles.textfieldWithFloatingLabel)
+  .withOnFocus(() => console.log('Focus'))
+  .withOnBlur(() => console.log('Blur'))
+  .withOnEndEditing((e) => console.log('EndEditing', e.nativeEvent.text))
+  .withOnSubmitEditing((e) => console.log('SubmitEditing', e.nativeEvent.text))
+  .withOnTextChange((e) => console.log('TextChange', e))
+  .withOnChangeText((e) => console.log('ChangeText', e))
+  .build();
+
+const TextFields = React.createClass({
+  componentDidMount: function() {
+    setTimeout((() => {
+      if (this.refs.defaultInput) {
+        this.refs.defaultInput.focus();
+      }
+    }), 1000);
+  },
+
+  render: function() {
+    return (
+      <ScrollView style={styles.scrollView}
+                  contentContainerStyle={styles.container}>
+
+        <View style={styles.row}>
+          <View style={styles.col}>
+          <MKTextField
+              tintColor={MKColor.Lime}
+              textInputStyle={{color: MKColor.Orange}}
+              placeholder="12314"
+              floatingLabelEnabled='true'
+              style={styles.textfieldWithFloatingLabel}
+            />
+          </View>
+          <View style={styles.col}>
+            <TextfieldWithFloatingLabel ref="defaultInput"/>
+            <Text style={styles.legendLabel}>With floating label</Text>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <View style={styles.col}>
+            <Textfield/>
+            <Text style={styles.legendLabel}>Textfield</Text>
+          </View>
+          <View style={styles.col}>
+            <TextfieldWithFloatingLabel ref="defaultInput"/>
+            <Text style={styles.legendLabel}>With floating label</Text>
+          </View>
+        </View>
+        <View style={styles.row}>
+          <View style={styles.col}>
+            <ColoredTextfield/>
+            <Text style={styles.legendLabel}>Textfield</Text>
+          </View>
+          <View style={styles.col}>
+            <PasswordInput/>
+            <Text style={styles.legendLabel}>With floating label</Text>
+          </View>
+        </View>
+
+      </ScrollView>
+    );
+  },
+});
+
+module.exports = TextFields;
