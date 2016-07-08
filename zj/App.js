@@ -15,6 +15,7 @@ import ContactsPage from './cmp/ContactsPage';
 import ZJPhotoPage from './cmp/ZJPhotoPage';
 import ZJMyPhotoSelectPage from './cmp/ZJMyPhotoSelectPage';
 import MKPage from './cmp/MKPage';
+import CodePush from 'react-native-code-push';
 
 class App extends Component {
 
@@ -29,6 +30,16 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
 
+  }
+
+  componentDidMount() {
+    CodePush.sync({
+      updateDialog: {
+      appendReleaseDescription: true,
+      descriptionPrefix: "\n\nChange log:\n"
+      },
+      installMode: CodePush.InstallMode.IMMEDIATE
+      });
   }
 
   render() {
@@ -60,6 +71,7 @@ class MyLongScrollView extends Component {
   constructor(props, context) {
     super(props, context);
   }
+
 
   generateContents() {
     let contents = [];

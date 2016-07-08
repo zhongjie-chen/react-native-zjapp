@@ -8,12 +8,19 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  AppState,
   View
 } from 'react-native';
 
 import App from './zj/App';
+import CodePush from 'react-native-code-push';
 
 class ZJApp extends Component {
+
+  constructor(props){
+    super(props);
+  }
+
   render() {
     return (
       <App name='chenzhongjie'></App>

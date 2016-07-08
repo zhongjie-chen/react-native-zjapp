@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">msGeyPN0mKO0FsYSKPu4fKP_KkDYEk4suWOLb</string>
     <string name="app_name">ZJApp</string>
 </resources>

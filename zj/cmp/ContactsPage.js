@@ -25,12 +25,12 @@ class ContactsPage extends Component {
       <ScrollView>
         <TouchableOpacity style={{alignItems: 'center', }} onPress={()=>this._onPress(true)}>
           <View style={{borderWidth: StyleSheet.hairlineWidth, borderColor: '#c9c9c9', borderRadius: 4, padding: 10, backgroundColor: 'blue', marginTop: 4}}>
-            <Text style={{color: 'white'}}>得到通讯录</Text>
+            <Text style={{color: 'white'}}>得到通讯录222</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={{alignItems: 'center', marginBottom: 10 }} onPress={()=>this._onPress(false)}>
           <View style={{borderWidth: StyleSheet.hairlineWidth, borderColor: '#c9c9c9', borderRadius: 4, padding: 10, backgroundColor: 'red'}}>
-            <Text style={{color: 'white'}}>清楚通讯录</Text>
+            <Text style={{color: 'white'}}>清楚通讯录222</Text>
           </View>
         </TouchableOpacity>
         {
