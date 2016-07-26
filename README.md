@@ -13,7 +13,7 @@
 
 5 MD设计风格的第三方库（`react-native-material-kit`）
 
-6 新增热更新功能 code push
+6 热更新功能 code push
 
 *另一个开源项目:* [Rank Linking](https://github.com/zhongjie-chen/rn_rank)
 
